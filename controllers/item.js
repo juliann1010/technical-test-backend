@@ -56,7 +56,7 @@ var controller = {
 
 		if(projectName == null) return res.status(404).send({message: "Please, specify a name"});
 
-		Project.find({name: projectName}, (err, item) => {
+		Project.find({name: {$regex: "^"+projectName, $options:"i"}}, (err, item) => {
 			if(err) return res.status(500).send({message: "ID with invalid form"});
 
 			if(!item) return res.status(404).send({message: "Can't find ID"});

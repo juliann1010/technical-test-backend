@@ -5,11 +5,11 @@ var jwt = require('jsonwebtoken');
 // Token verification
 
 var verifyToken = (req, res, next) => {
-	var token = req.get('token');
+	var token = req.params.token;
 
 	jwt.verify(token, 'secret-seed', (err, decoded) =>{
 		if(err){
-			return res.status(401).send({message: "Invalid token", err});
+			return res.status(401).send({message: "Invalid token2", token});
 		}
 
 		req.user = decoded.user;
